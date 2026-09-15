@@ -37,10 +37,14 @@ values on disk if the network is down.
 
 ## Under the hood
 
+All of it lives in one file, `__init__.py` — fetching, caching and scoring
+aren't (yet) split into separate modules.
+
 | Location | Role |
 |---|---|
 | `series()` | Fetches (or reads cached) rows for one FRED series id. |
 | `snapshot()` | Builds a `MacroSnapshot` from all six series. |
+| `MacroSnapshot` | The dataclass `snapshot()` returns — yields, curve spread, VIX, unemployment (and its 12-month change), CPI YoY, real 10y, the regime label, per-component scores, rationale text, per-series `as_of` dates, and a `stale` flag. |
 | `_classify()` | Scores the snapshot into the published, named regime components. |
 | `MacroCache` | The `_TTL`-based disk cache wrapping `snapshot()`. |
 
