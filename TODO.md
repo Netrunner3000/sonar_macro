@@ -8,5 +8,6 @@
 
 ## v1 — current
 
-No items yet. Macro's own backlog was split out of SONAR's shared TODO.md on
-2026-09-14. Add items here going forward as Macro-specific work comes up.
+- [ ] `P2` `testing` `@ai` Pin the regime score against known historical conditions. The weights are published and the components named, which makes the heuristic auditable — but nothing asserts that a 2008 or 2020 input produces the regime a reader would expect, so a weight change can drift the output with no test objecting.
+- [ ] `P2` `bug` `@ai` Say when the cache is serving stale values. The six-hour TTL keeps the last good numbers on disk when FRED is unreachable, which is the right call — but a regime built from three-day-old data currently looks identical to a fresh one.
+- [ ] `P3` `design` `@ai` Split fetching, caching and scoring out of the single `__init__.py`. Fine at its current size; worth doing before a seventh series or a second source arrives.
